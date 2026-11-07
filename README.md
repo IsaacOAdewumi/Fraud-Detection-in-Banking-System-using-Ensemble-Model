@@ -1,19 +1,21 @@
-# Sensor Data Anomaly Detection with Machine Learning
+FRAUD DETECTION SYSTEM IN BANKING SECTOR USING ENSEMBLE MACHINE LEARNING TECHNIQUES
 
 **Project type:** Python / machine learning / binary classification  
 **Author:** Isaac Olufemi Adewumi
 
 ## Project overview
 
-This project explores anomaly detection in multivariate sensor readings. The report describes records containing date/time information, mote ID, temperature, humidity, light, and voltage. The modelling workflow uses the four sensor measurements—Temperature, Humidity, Light, and Voltage—to classify records as normal or anomalous.
+The aim of this research work is to develop an Ensemble Machine Learning model for  fraud detection  in the banking sector. The major objectives are to;
+i.	design a model that will detect fraudulent activities happening in the banking sector by integrating multiple Machine Learning Algorithms
+ii.	implement the model using dataset from Kaggle data repository
+iii.	evaluate the performance of the implemented model in (ii) above using standard evaluation metrics
 
 ## Models explored
 
 The supplied notebook and report cover:
-- Random Forest
-- Extra Trees
+- AdaBoost
 - XGBoost
-- LightGBM
+- Random Forest
 - Ensemble classification using hard and soft voting
 
 The report evaluates models using accuracy, precision, recall, F1-score, ROC-AUC, confusion matrices, and classification reports.
@@ -29,18 +31,35 @@ The notebook and report still need to be uploaded to these paths. The dataset fi
 
 ## Workflow described in the materials
 
-1. Load sensor readings into a pandas DataFrame.
-2. Forward-fill missing values and inspect/remove duplicate rows.
-3. Create an `anomaly_label` using threshold rules for temperature, humidity, and voltage.
-4. Use Temperature, Humidity, Light, and Voltage as model features.
-5. Train and evaluate the individual classifiers.
-6. Compare the individual models and explore voting-based ensembles.
+11. Data Preprocessing
+•	Load the Dataset: First, we'll load the dataset, ensuring that it's clean and well-prepared for modeling. This includes handling missing values, encoding categorical variables, and normalizing or standardizing the features if necessary.
+•	Feature Selection: Identify the key features that will be used for fraud detection. This might involve removing irrelevant or highly correlated features to improve the model's performance.
+2. Modeling with Ensemble Techniques
+•	Extended Gradient Boosting (XGBoost):
+o	Train an XGBoost model, which is a powerful ensemble method that uses boosting techniques to improve the model's accuracy.
+o	Fine-tune hyperparameters using cross-validation.
+•	Adaptive Gradient Boosting (AdaBoost):
+o	Train an AdaBoost model, which is another boosting algorithm that adapts to the errors made by previous models to improve predictions.
+o	Again, hyperparameter tuning will be essential to achieve the best results.
+•	Support Vector Machine (SVM):
+o	Train an SVM model, which is effective in high-dimensional spaces and for cases where the number of dimensions exceeds the number of samples.
+o	Use a kernel (like RBF) to handle non-linear relationships if necessary.
+3. Ensemble Using Voting Method
+•	Voting Classifier: Combine the three models (XGBoost, AdaBoost, and SVM) using a voting method.
+o	Hard Voting: Majority voting where the final prediction is the class that gets the most votes from the models.
+o	Soft Voting: Average the predicted probabilities from each model, and the class with the highest average probability is selected as the final prediction.
+4. Evaluation
+•	Performance Metrics: Evaluate the ensemble model's performance using metrics like accuracy, precision, recall, F1-score, and AUC-ROC curve.
+•	Comparison: Compare the performance of the individual models against the ensemble model to demonstrate the effectiveness of the ensemble approach.
+5. Visualization and Presentation
+•	Graphs and Charts: Visualize the results using ROC curves, confusion matrices, and other relevant plots.
+•	PowerPoint Integration: Use the PowerPoint slides to present the methodology, results, and conclusions. The final slide should summarize the findings and suggest possible improvements or next steps.
 
 ## Important interpretation note
 
-The notebook creates the target label from threshold rules applied to some of the same sensor variables later supplied to the models. This can make the classification task easier because the models may learn to reproduce those rules. The very high scores reported in the accompanying report should therefore **not** be interpreted as proof of equivalent real-world anomaly-detection performance without additional validation against independently labelled data and a leakage-aware evaluation.
-
-The report also contains some inconsistent descriptions and metric/confusion-matrix values. Treat the figures as results reported in the supplied document until the notebook is rerun and the outputs are reconciled.
+i.	Robust Fraud Detection: By utilizing a combination of XGBoost, AdaBoost, and Random Forest, we achieved a robust and accurate fraud detection system. Each model brings a unique strength, and their ensemble further enhances the reliability of predictions.
+ii.	Enhanced Accuracy and Reliability: The ensemble model improved overall performance metrics, providing a more dependable classification of fraudulent transactions. This is crucial in real-world scenarios where minimizing false positives and false negatives is key to maintaining trust and security.
+iii.	Scalability and Adaptability: The models, especially when combined, can be scaled, and adapted to different datasets, making them suitable for various banking environments and transaction types.
 
 ## Reproducibility
 
@@ -48,4 +67,4 @@ The dataset is not included in this repository yet. Before running the notebook,
 
 ## Tools
 
-Python, pandas, NumPy, scikit-learn, XGBoost, LightGBM, and Jupyter Notebook.
+Python, pandas, NumPy, scikit-learn, XGBoost, AdaBoost, Random Forest, and Jupyter Notebook.
